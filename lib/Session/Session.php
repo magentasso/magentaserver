@@ -91,7 +91,7 @@ class Session {
 
 	public function currentUser(): ?User {
 		if ($this->session_id !== null && array_key_exists('userid', $this->session_data)) {
-			return User::where('id', intval($this->session_data['userid']))->first();
+			return User::find(intval($this->session_data['userid']));
 		}
 
 		return null;
