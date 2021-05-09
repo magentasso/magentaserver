@@ -26,7 +26,8 @@
         "philipp15b/php-i18n": "^4.0",
         "gilbitron/easycsrf": "^1.4",
         "illuminate/database": "^8.40",
-        "php-di/slim-bridge": "^3.1"
+        "php-di/slim-bridge": "^3.1",
+        "robmorgan/phinx": "^0.12.6"
     },
     "require-dev": {
         "phpstan/phpstan": "^0.12.86",

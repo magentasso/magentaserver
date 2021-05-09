@@ -4,7 +4,16 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
 # Force a 404 for application directories
-RedirectMatch 404 /(?:cache|lang|lib|templates|custom|vendor)/.*$
+RedirectMatch 404 /cache/.*$
+RedirectMatch 404 /lang/.*$
+RedirectMatch 404 /lib/.*$
+RedirectMatch 404 /templates/.*$
+RedirectMatch 404 /vendor/.*$
+RedirectMatch 404 /db/.*$
+RedirectMatch 404 /phinx.php$
+
+# Force a 404 on the `custom/` directory
+RedirectMatch 404 /custom/.*$
 
 # Rewrite everything else to index.php
 RewriteRule ^ index.php [QSA,L]
