@@ -9,12 +9,16 @@ class Application {
 	public static function loadConfiguration(): void {
 		$dotenv = \Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 		$dotenv->load();
-		$dotenv->required('ENVIRONMENT')->allowedValues(['development', 'production']);
-		$dotenv->required('DATABASE_URL');
-		$dotenv->required('REDIS_URL');
-		$dotenv->required('SITE_TITLE');
-		$dotenv->required('SITE_SESSIONCOOKIE');
+		
+		// Verify environment
+		$dotenv->required('ENVIRONMENT')->allowedValues(['development', 'test', 'production']);
+		$dotenv->required('DATABASE_URL')->notEmpty();
+		$dotenv->required('REDIS_URL')->notEmpty();
+		$dotenv->required('SITE_SESSIONCOOKIE')->notEmpty();
+		$dotenv->ifPresent('SITE_TITLE')->notEmpty();
+		$dotenv->ifPresent('SITE_TEMPLATEDIR')->notEmpty();
 
+		// Load i18n code
 		$i18n = new \i18n(dirname(__DIR__) . '/lang/{LANGUAGE}.ini', dirname(__DIR__) . '/cache/lang', 'en');
 		$i18n->init();
 	}

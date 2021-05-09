@@ -1,5 +1,6 @@
 /vendor
 /cache
+/custom
 .env
 .env.*
 !.env.dist

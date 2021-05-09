@@ -2,6 +2,11 @@
 
 The reference implementation of a standalone MagentaSSO server.
 
+## Documentation
+
+The `docs/` directory contains the majority
+of the MagentaServer documentation.
+
 ## License
 
 The MagentaServer is licensed under the
