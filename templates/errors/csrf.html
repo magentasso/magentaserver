@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}{{ L('exception_csrf_title') }}{% endblock %}
+{% block header %}{% endblock %}
+
+{% block contentcontainer %}
+<main class="popup-container">
+	<h1>{{ L('exception_csrf_title') }}</h1>
+	<p>{{ L('exception_csrf_content_one')|raw }}</p>
+	
+	<div class="form-main">
+		<a class="button" href="">{{ L('action_refresh') }}</a>
+		<a class="button" href="{{ url_for('index') }}">{{ L('action_home') }}</a>
+	</div>
+</main>
+{% endblock %}

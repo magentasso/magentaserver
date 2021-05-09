@@ -30,7 +30,11 @@ class Controller {
 			$this->session->setSessionID($cookies[$_ENV['SITE_SESSIONCOOKIE']])->retrieve();
 		}
 
-		return $this->$reqMethod($request, $response, $args);
+		try {
+			return $this->$reqMethod($request, $response, $args);	
+		} catch (\EasyCSRF\Exceptions\InvalidCsrfTokenException $e) {
+			return $this->renderView($request, $response, "errors/csrf.html");
+		}
 	}
 
 	public function renderView(ServerRequestInterface $request, ResponseInterface $response, string $template, ?array $args = []): ResponseInterface {
