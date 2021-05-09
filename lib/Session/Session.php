@@ -3,6 +3,7 @@ namespace MagentaServer\Session;
 
 use Base32\Base32;
 use MagentaServer\Helpers\RedisInstance;
+use MagentaServer\Models\User;
 
 class Session {
 	public ?string $session_id;
@@ -88,7 +89,11 @@ class Session {
 
 	// User helpers
 
-	public function currentUser() {
+	public function currentUser(): ?User {
+		if ($this->session_id !== null && array_key_exists('userid', $this->session_data)) {
+			return User::where('id', intval($this->session_data['userid']))->first();
+		}
+
 		return null;
 	}
 	
