@@ -2,6 +2,9 @@
     <nav class="main-nav main-container">
         <ul class="nav-section">
             <li><a class="nav-brand {% if is_current_url('index') %}nav-active{% endif %}" href="{{ url_for('index') }}">{{ site_title }}</a></li>
+        </ul>
+
+        <ul class="nav-section">
             {% if current_session.isLoggedIn() %}
                 <li>logged in</li>
             {% else %}

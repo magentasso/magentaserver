@@ -6,7 +6,7 @@
 	--popup-foreground: hsla(0, 0%, 0%, 1);
 	--header-background: hsla(259, 19%, 39%, 1);
 	--header-foreground: hsla(360, 100%, 100%, 1);
-	--header-item-height: 2rem;
+	--header-item-height: 3rem;
 	--header-item-padding: 0 1rem;
 	--header-item-focus-background: hsla(262, 100%, 90%, 1);
 	--header-item-focus-foreground: hsla(259, 19%, 39%, 1);
@@ -118,10 +118,17 @@ a:hover, a:focus {
 	margin: 0 auto;
 }
 
+.main-nav {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: baseline;
+	justify-content: space-between;
+}
+
 .main-header {
 	height: auto;
 	min-height: var(--header-item-height);
-	
+
 	background: var(--header-background);
 	color: var(--header-foreground);
 }
@@ -130,7 +137,7 @@ a:hover, a:focus {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	
+
 	height: auto;
 	min-height: var(--header-item-height);
 	padding: var(--header-item-padding);
@@ -138,10 +145,10 @@ a:hover, a:focus {
 	background: var(--header-background);
 	color: var(--header-foreground);
 	transition: background-color 0.1s, color 0.1s;
-	
-	border-top: 2px solid transparent;
-	border-bottom: 2px solid transparent;
-	
+
+	border-top: 4px solid transparent;
+	border-bottom: 4px solid transparent;
+
 	text-decoration: none;
 }
 
@@ -155,7 +162,6 @@ a:hover, a:focus {
 }
 
 .main-header a.nav-active {
-	font-weight: bold;
 	border-bottom-color: var(--header-item-active-border-color);
 }
 
