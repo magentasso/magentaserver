@@ -2,6 +2,7 @@
 namespace MagentaServer;
 
 use MagentaServer\Container;
+use MagentaServer\Helpers\DatabaseCapsule;
 use Slim\Factory\AppFactory;
 use Slim\Views\TwigMiddleware;
 
@@ -9,7 +10,7 @@ class Application {
 	public static function loadConfiguration(): void {
 		$dotenv = \Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 		$dotenv->load();
-		
+
 		// Verify environment
 		$dotenv->required('ENVIRONMENT')->allowedValues(['development', 'test', 'production']);
 		$dotenv->required('DATABASE_URL')->notEmpty();
@@ -21,6 +22,9 @@ class Application {
 		// Load i18n code
 		$i18n = new \i18n(dirname(__DIR__) . '/lang/{LANGUAGE}.ini', dirname(__DIR__) . '/cache/lang', 'en');
 		$i18n->init();
+
+		// Connect to database
+		DatabaseCapsule::get();
 	}
 
 	public static function createApp(): \Slim\App {
