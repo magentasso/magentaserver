@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% block head %}
-    <meta charset="utf-8">
-    <title>{% block title %}Magenta{% endblock %}</title>
-    <link rel="stylesheet" href="/static/styles/main.css">
-    {% endblock %}
+	{% block head %}
+	<meta charset="utf-8">
+	<title>{% block title %}Magenta{% endblock %}</title>
+	<link rel="stylesheet" href="/static/styles/main.css">
+	{% endblock %}
 </head>
 <body>
-    {% block body %}
-        {% include "includes/header.html" %}
-        <main class="main main-container">
-            {% block content %}{% endblock %}
-        </main>
-    {% endblock %}
+	{% block body %}
+	{% include "includes/header.html" %}
+	<main class="main main-container">
+		{% block content %}{% endblock %}
+	</main>
+	{% endblock %}
 </body>
 </html>

@@ -9,15 +9,15 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 class Controller {
-    private $container;
+	private $container;
 	public Session $session;
 	public EasyCSRF $csrf;
 
-    public function __construct(ContainerInterface $container) {
-        $this->container = $container;
+	public function __construct(ContainerInterface $container) {
+		$this->container = $container;
 		$this->session = new Session(null);
 		$this->csrf = new EasyCSRF(new EasyCSRFSessionProvider($this->session));
-    }
+	}
 
 	public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
 		$reqMethod = "request{$request->getMethod()}";
