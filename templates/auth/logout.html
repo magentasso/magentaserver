@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}{{ L('auth_logout_title') }}{% endblock %}
+{% block contentcontainer %}
+	{% if message %}
+		<div class="main-container margin-y">
+			<aside class="message">{{ message }}</aside>
+		</div>
+	{% endif %}
+
+	<main id="auth-login-container" class="main popup-container">
+		<h1>{{ L('auth_logout_title') }}</h1>
+		<p>{{ L('auth_logout_content_one')|raw }}</p>
+
+		<form class="form-main" method="POST">
+			<input type="hidden" name="_csrf" value="{{ csrf.generate('csrf') }}">
+			<button class="button" type="submit">{{ L('auth_logout_submit') }}</button>
+		</form>
+	</main>
+{% endblock %}
