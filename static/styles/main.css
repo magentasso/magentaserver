@@ -1,0 +1,200 @@
+:root {
+	--body-background: hsla(259, 19%, 80%, 1);
+	--body-foreground: hsla(0, 0%, 0%, 1);
+	--accent: hsla(259, 19%, 39%, 1);
+	--popup-background: hsla(360, 100%, 100%, 1);
+	--popup-foreground: hsla(0, 0%, 0%, 1);
+	--header-background: hsla(259, 19%, 39%, 1);
+	--header-foreground: hsla(360, 100%, 100%, 1);
+	--header-item-height: 2rem;
+	--header-item-padding: 0 1rem;
+	--header-item-focus-background: hsla(262, 100%, 90%, 1);
+	--header-item-focus-foreground: hsla(259, 19%, 39%, 1);
+	--header-item-active-border-color: hsla(262, 100%, 90%, 1);
+	--button-background: hsla(259, 19%, 39%, 1);
+	--button-foreground: hsla(360, 100%, 100%, 1);
+	--button-border: hsla(360, 100%, 100%, 1);
+	--button-hover-background: hsla(259, 19%, 49%, 1);
+	--button-hover-foreground: hsla(360, 100%, 100%, 1);
+	--message-default-background: hsla(262, 100%, 90%, 1);
+	--message-default-foreground: hsla(259, 19%, 39%, 1);
+	--message-default-border: 2px solid hsla(360, 100%, 100%, 1);
+}
+
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+html, body {
+	width: 100%;
+	max-width: 100%;
+	min-height: 100%;
+	padding: 0;
+	margin: 0;
+	
+	font-family: sans-serif;
+}
+
+body {
+	background: var(--body-background);
+	color: var(--body-foreground);
+}
+
+.main a {
+	color: var(--accent);
+}
+
+a {
+	text-decoration: underline;
+}
+
+a:hover, a:focus {
+	color: inherit;
+	text-decoration-thickness: 2px;
+}
+
+.button {
+	display: inline-block;
+	padding: 0.35rem 0.75rem;
+	text-decoration: none;
+
+	background: var(--button-background);
+	color: var(--button-foreground);
+	border: 1px solid var(--button-border);
+	border-radius: 2px;
+}
+
+.button:focus, .button:hover {
+	background: var(--button-hover-background);
+	color: var(--button-hover-foreground);
+}
+
+.form-main input:not([type = "checkbox"]), .form-main select, .form-main textarea, .form-main .button {
+	width: 100%;
+	margin: 0 0 0.5rem 0;
+}
+
+.inline-form {
+	display: inline-block;
+}
+
+.inline-form .button {
+	width: auto !important;
+}
+
+.nav-section, .nav-section li {
+	display: inline-flex;
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+}
+
+.popup-container {
+	display: block;
+	width: 100%;
+	max-width: 64rem;
+	margin: 1rem auto;
+	padding: 1rem;
+	
+	background: var(--popup-background);
+	color: var(--popup-foreground);
+
+	border-radius: 4px;
+}
+
+.popup-container h1 {
+	width: 100%;
+	margin: 0 0 0.75rem 0;
+	padding: 0 0 0.25rem 0;
+	text-align: center;
+
+	border-bottom: 2px solid var(--popup-foreground);
+}
+
+.main-container {
+	display: block;
+	width: 100%;
+	max-width: 64rem;
+	margin: 0 auto;
+}
+
+.main-header {
+	height: auto;
+	min-height: var(--header-item-height);
+	
+	background: var(--header-background);
+	color: var(--header-foreground);
+}
+
+.main-header a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	
+	height: auto;
+	min-height: var(--header-item-height);
+	padding: var(--header-item-padding);
+
+	background: var(--header-background);
+	color: var(--header-foreground);
+	transition: background-color 0.1s, color 0.1s;
+	
+	border-top: 2px solid transparent;
+	border-bottom: 2px solid transparent;
+	
+	text-decoration: none;
+}
+
+.main-header a:focus, .main-header a:hover {
+	background: var(--header-item-focus-background);
+	color: var(--header-item-focus-foreground);
+}
+
+.main-header a.nav-brand {
+	font-weight: bold;
+}
+
+.main-header a.nav-active {
+	font-weight: bold;
+	border-bottom-color: var(--header-item-active-border-color);
+}
+
+.main-footer {
+	margin: 0.75rem auto;
+	padding: 0 0.5rem;
+	text-align: center;
+	font-size: 0.8rem;
+}
+
+.main-footer a {
+	color: var(--accent);
+}
+
+.message {
+	display: block;
+	margin: 0 0 0.75rem 0;
+	padding: 0.75rem 1rem;
+
+	background: var(--message-default-background);
+	color: var(--message-default-foreground);
+	border: var(--message-default-border);
+	border-radius: 4px;
+}
+
+.inline-list {
+	display: block;
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+}
+
+.inline-list li {
+	display: inline-block;
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+}
+
+.inline-list li:not(:last-child):after {
+	content: ' \00b7 ';
+}

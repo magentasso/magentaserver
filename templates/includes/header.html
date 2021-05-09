@@ -1,0 +1,12 @@
+<header class="main-header">
+    <nav class="main-nav main-container">
+        <ul class="nav-section">
+            <li><a class="nav-brand {% if is_current_url('index') %}nav-active{% endif %}" href="{{ url_for('index') }}">{{ site_title }}</a></li>
+            {% if current_session.isLoggedIn() %}
+                <li>logged in</li>
+            {% else %}
+                <li><a class="{% if is_current_url('auth-login') %}nav-active{% endif %}" href="{{ url_for('auth-login') }}">{{ L('auth_login_title') }}</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
