@@ -1,0 +1,11 @@
+<footer class="main-footer">
+	{% if site_environment in ['development', 'test'] %}
+		<ul class="inline-list margin-y">
+			<li>Environment: {{ site_environment }}</li>
+			<li><a target="_blank" href="{{ url_for('debug') }}">{{ L('debug_view_footer_link') }}</a></li>
+		</ul>
+	{% endif %}
+	<ul class="inline-list margin-y">
+		<li>{{ L('string_powered_by') }} <a target="_blank" href="https://github.com/magentasso/magentaserver">MagentaServer</a></li>
+	</ul>
+</footer>

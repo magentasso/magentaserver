@@ -180,7 +180,7 @@ a:hover, a:focus {
 	font-size: 0.8rem;
 }
 
-.main-footer a {
+.main-footer a:not(.button) {
 	color: var(--accent);
 }
 
@@ -211,4 +211,14 @@ a:hover, a:focus {
 
 .inline-list li:not(:last-child):after {
 	content: ' \00b7 ';
+}
+
+.margin-x {
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+
+.margin-y {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
