@@ -11,8 +11,7 @@ class AuthLoginController extends Controller {
 	}
 
 	public function requestPOST(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
-		$session = $this->session($request)->ensureCreate()->update();
-
+		$this->csrf->check('csrf', $request->getParsedBody()['_csrf'], null, true);
 		return $this->renderView($request, $response, "auth/login.html", [
 			'message' => 'Not implemented!',
 		]);

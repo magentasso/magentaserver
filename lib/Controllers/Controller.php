@@ -38,6 +38,7 @@ class Controller {
 			'site_title' => $_ENV['SITE_TITLE'] ?? 'Magenta',
 			'site_environment' => $_ENV['ENVIRONMENT'],
 			'session' => $this->session->retrieve(),
+			'csrf' => $this->csrf,
 		], $args ?? []);
 
 		return $this->container->get('view')->render($response, $template, $args);

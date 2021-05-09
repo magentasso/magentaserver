@@ -1,12 +1,18 @@
 {% extends "layout.html" %}
 {% block title %}{{ L('auth_login_title') }}{% endblock %}
-{% block content %}
-<div class="popup-container">
-	<form class="form-main" method="POST">
-		<input type="hidden" name="_csrf" value="{{ csrf.generate('csrf') }}">
-		<input type="email" name="email" placeholder="{{ L('field_email') }}">
-		<input type="password" name="password" placeholder="{{ L('field_password') }}">
-		<button class="button" type="submit">{{ L('auth_login_submit') }}</button>
-	</form>
-</div>
+{% block contentcontainer %}
+	{% if message %}
+		<div class="main-container margin-y">
+			<aside class="message">{{ message }}</aside>
+		</div>
+	{% endif %}
+
+	<main id="auth-login-container" class="main popup-container">
+		<form class="form-main" method="POST">
+			<input type="hidden" name="_csrf" value="{{ csrf.generate('csrf') }}">
+			<input type="email" name="email" placeholder="{{ L('field_email') }}">
+			<input type="password" name="password" placeholder="{{ L('field_password') }}">
+			<button class="button" type="submit">{{ L('auth_login_submit') }}</button>
+		</form>
+	</main>
 {% endblock %}
