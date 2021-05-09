@@ -24,11 +24,11 @@ class Application {
 	}
 
 	public static function createApp(): \Slim\App {
-		// Create and register the container
-		AppFactory::setContainer(new Container());
+		// Create the container
+		$container = new Container();
 
 		// Create the app
-		$app = AppFactory::create();
+		$app = \DI\Bridge\Slim\Bridge::create($container);
 		$app->add(TwigMiddleware::createFromContainer($app));
 		$app->addRoutingMiddleware();
 		$app->addErrorMiddleware(true, true, true);

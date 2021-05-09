@@ -14,7 +14,7 @@ class Container extends \DI\Container {
 				'cache' => dirname(__DIR__) . '/cache/templates',
 				'debug' => ($_ENV['ENVIRONMENT'] == 'development'),
 			]);
-			
+
 			$twig->addExtension(new \MagentaServer\Helpers\TwigExtension());
 			return $twig;
 		});

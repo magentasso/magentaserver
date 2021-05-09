@@ -19,7 +19,7 @@ class Controller {
 		$this->csrf = new EasyCSRF(new EasyCSRFSessionProvider($this->session));
 	}
 
-	public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
+	public function __invoke(ServerRequestInterface $request, ResponseInterface $response, ?array $args = []): ResponseInterface {
 		$reqMethod = "request{$request->getMethod()}";
 		if (!method_exists($this, $reqMethod)) {
 			return $response->withStatus(405);
