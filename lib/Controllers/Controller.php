@@ -46,6 +46,7 @@ class Controller {
 	public function urlFor(string $routeName, array $data = [], array $queryParams = []): string {
 		return $this->container
 			->get('Slim\\App')
+			->getRouteCollector()
 			->getRouteParser()
 			->urlFor($routeName, $data, $queryParams);
 	}

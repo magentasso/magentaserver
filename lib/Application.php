@@ -18,16 +18,19 @@ class Application {
 		$dotenv->required('SITE_SESSIONCOOKIE')->notEmpty();
 		$dotenv->ifPresent('SITE_TITLE')->notEmpty();
 		$dotenv->ifPresent('SITE_TEMPLATEDIR')->notEmpty();
+	}
 
+	public static function loadLanguages(): void {
 		// Load i18n code
 		$i18n = new \i18n(dirname(__DIR__) . '/lang/{LANGUAGE}.ini', dirname(__DIR__) . '/cache/lang', 'en');
 		$i18n->init();
-
-		// Connect to database
-		DatabaseCapsule::get();
 	}
 
 	public static function createApp(): \Slim\App {
+		self::loadConfiguration();
+		self::loadLanguages();
+		DatabaseCapsule::get();
+
 		// Create the container
 		$container = new Container();
 
