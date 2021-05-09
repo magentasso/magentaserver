@@ -51,6 +51,7 @@ class Session {
 			// Update our cookie
 			setcookie($_ENV['SITE_SESSIONCOOKIE'], $this->session_id, [
 				'expires' => $session_expiry,
+				'path' => '/',
 				'httponly' => true,
 			]);
 		}
@@ -67,6 +68,7 @@ class Session {
 			// Remove the cookie by blanking it and setting it to expire 24h ago
 			setcookie($_ENV['SITE_SESSIONCOOKIE'], '', [
 				'expires' => time() - (60 * 60 * 24),
+				'path' => '/',
 				'httponly' => true,
 			]);
 

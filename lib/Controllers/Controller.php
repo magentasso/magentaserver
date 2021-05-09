@@ -27,7 +27,7 @@ class Controller {
 
 		$cookies = $request->getCookieParams();
 		if (array_key_exists($_ENV['SITE_SESSIONCOOKIE'], $cookies)) {
-			$this->session->setSessionID($cookies[$_ENV['SITE_SESSIONCOOKIE']]);
+			$this->session->setSessionID($cookies[$_ENV['SITE_SESSIONCOOKIE']])->retrieve();
 		}
 
 		return $this->$reqMethod($request, $response, $args);

@@ -6,7 +6,7 @@ use EasyCSRF\Interfaces\SessionProvider;
 
 class EasyCSRFSessionProvider implements SessionProvider {
 	protected Session $session;
-	public function __construct(Session $session) {
+	public function __construct(Session &$session) {
 		$this->session = $session;
 	}
 
