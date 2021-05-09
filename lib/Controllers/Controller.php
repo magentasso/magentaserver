@@ -36,6 +36,19 @@ class Controller {
 			return $this->renderView($request, $response, "errors/csrf.html");
 		}
 	}
+	
+	/**
+	 * @param string $routeName Route name
+     * @param array<string, string> $data Route placeholders
+     * @param array<string, string> $queryParams Query parameters
+	 * @return string 
+	*/
+	public function urlFor(string $routeName, array $data = [], array $queryParams = []): string {
+		return $this->container
+			->get('Slim\\App')
+			->getRouteParser()
+			->urlFor($routeName, $data, $queryParams);
+	}
 
 	public function renderView(ServerRequestInterface $request, ResponseInterface $response, string $template, ?array $args = []): ResponseInterface {
 		$args = array_merge([
