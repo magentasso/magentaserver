@@ -13,9 +13,10 @@
 	--header-item-active-border-color: hsla(262, 100%, 90%, 1);
 	--button-background: hsla(259, 19%, 39%, 1);
 	--button-foreground: hsla(360, 100%, 100%, 1);
-	--button-border: hsla(360, 100%, 100%, 1);
+	--button-border: 1px solid hsla(0, 0%, 0%, 1);
 	--button-hover-background: hsla(259, 19%, 49%, 1);
 	--button-hover-foreground: hsla(360, 100%, 100%, 1);
+	--form-input-border: 1px solid hsla(0, 0%, 0%, 1);
 	--message-default-background: hsla(262, 100%, 90%, 1);
 	--message-default-foreground: hsla(259, 19%, 39%, 1);
 	--message-default-border: 2px solid hsla(360, 100%, 100%, 1);
@@ -57,16 +58,23 @@ a:hover, a:focus {
 	display: inline-block;
 	padding: 0.35rem 0.75rem;
 	text-decoration: none;
+	text-align: center;
 
 	background: var(--button-background);
 	color: var(--button-foreground);
-	border: 1px solid var(--button-border);
-	border-radius: 2px;
+	border: var(--button-border);
+	border-radius: 4px;
 }
 
 .button:focus, .button:hover {
 	background: var(--button-hover-background);
 	color: var(--button-hover-foreground);
+}
+
+.form-main input:not([type = "checkbox"]), .form-main select, .form-main textarea {
+	padding: 0.35rem 0.75rem;
+	border: var(--form-input-border);
+	border-radius: 4px;
 }
 
 .form-main input:not([type = "checkbox"]), .form-main select, .form-main textarea, .form-main .button {
@@ -95,7 +103,7 @@ a:hover, a:focus {
 	max-width: 64rem;
 	margin: 1rem auto;
 	padding: 1rem;
-	
+
 	background: var(--popup-background);
 	color: var(--popup-foreground);
 
