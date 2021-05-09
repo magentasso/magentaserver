@@ -1,12 +1,15 @@
 {% extends "layout.html" %}
 {% block title %}{{ L('debug_view_title') }}{% endblock %}
+
 {% block body %}
 {% include "debug/header.html" %}
-
 <main class="popup-container">
     <aside class="message">{{ message }}</aside>
-    <a class="button" href="{{ url_for('debug') }}">
-        {{ L('debug_view_back_to_debug') }}
-    </a>
+
+    <div class="form-main">
+        <a class="button" href="{{ url_for('debug') }}">
+            {{ L('debug_view_back_to_debug') }}
+        </a>
+    </div>
 </main>
 {% endblock %}
