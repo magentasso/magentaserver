@@ -26,32 +26,33 @@
 			<code>{% if session.session_id %}{{ session.session_id }}{% else %}not set{% endif %}</code>
 		</li>
 
-		<li>
-			<strong>{{ L('debug_view_session_data') }}</strong>:
-			<ul>
-				{% for key, value in session.session_data %}
-					<li>
-						<code>{{ key }}</code>
-						<ul><li><code>{{ value }}</code></li></ul>
-					</li>
-				{% endfor %}
-			</ul>
-		</li>
-		
-		<li>
-			<strong>{{ L('debug_view_session_user_data') }}</strong>:
-			<ul>
-				{% if session.isLoggedIn() %}
+		{% if session.session_id %}
+			<li>
+				<strong>{{ L('debug_view_session_data') }}</strong>:
+				<ul>
+					{% for key, value in session.session_data %}
+						<li>
+							<code>{{ key }}</code>
+							<ul><li><code>{{ value }}</code></li></ul>
+						</li>
+					{% endfor %}
+				</ul>
+			</li>
+		{% endif %}
+
+		{% if session.isLoggedIn() %}
+			<li>
+				<strong>{{ L('debug_view_session_user_data') }}</strong>:
+				<ul>
 					{% for key in ['email', 'name_first', 'name_last', 'permissions'] %}
 						<li>
 							<code>{{ key }}</code>
 							<ul><li><code>{{ session.currentUser()[key] }}</code></li></ul>
 						</li>
 					{% endfor %}
-				{% endif %}
-			</ul>
-		</li>
-		
+				</ul>
+			</li>
+		{% endif %}
 	</ul>
 </section>
 
