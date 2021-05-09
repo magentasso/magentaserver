@@ -32,6 +32,10 @@ class Application {
 		// Register routes
 		$app->any("/", Controllers\IndexController::class)->setName('index');
 		$app->any("/auth/login", Controllers\AuthLoginController::class)->setName('auth-login');
+		
+		if ($_ENV['ENVIRONMENT'] === 'development') {
+			$app->any("/debug", Controllers\DebuggingController::class)->setName('debug');
+		}
 
 		// Return the created app
 		return $app;

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block title %}{{ L('debug_view_title') }}{% endblock %}
+{% block body %}
+{% include "debug/header.html" %}
+
+<main class="popup-container">
+    <section id="debugview-session" class="popup-section">
+        <h1>{{ L('debug_view_session_title') }}</h1>
+        
+        <ul>
+            <li>
+                <strong>{{ L('debug_view_session_id') }}</strong>:
+                <code>{% if session.session_id %}{{ session.session_id }}{% else %}not set{% endif %}</code>
+            </li>
+            <li>
+                <strong>{{ L('debug_view_session_data') }}</strong>:
+                <ul>
+                    {% for key, value in session.session_data %}
+                        <li>
+                            <code>{{ key }}</code>
+                            <ul><li><code>{{ value }}</code></li></ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+    </section>
+    
+    <section id="debugview-actions" class="popup-section">
+        <h1>{{ L('debug_view_actions_title') }}</h1>
+
+        <form class="inline-form" method="POST">
+            <input type="hidden" name="action" value="destroySession">
+            <button type="submit" class="button">{{ L('debug_view_session_destroy') }}</button>
+        </form>
+        
+        <form class="inline-form" method="POST">
+            <input type="hidden" name="action" value="populateSession">
+            <button type="submit" class="button">{{ L('debug_view_session_populate') }}</button>
+        </form>
+    </section>
+</main>
+{% endblock %}
