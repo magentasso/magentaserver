@@ -31,6 +31,7 @@ class Application {
 
 		// Register routes
 		$app->any("/", Controllers\IndexController::class)->setName('index');
+		$app->any("/auth/login", Controllers\AuthLoginController::class)->setName('auth-login');
 
 		// Return the created app
 		return $app;
