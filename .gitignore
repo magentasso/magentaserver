@@ -1,0 +1,5 @@
+/vendor
+/cache
+.env
+.env.*
+!.env.dist
