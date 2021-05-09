@@ -9,11 +9,16 @@ class Session {
 	public array $session_data;
 
 	public function __construct(?string $session_id) {
+		$this->setSessionID($session_id);
+		$this->session_data = [];
+	}
+
+	public function setSessionID(?string $session_id): self {
 		if (empty($this->session_id = trim(strval($session_id ?? '')))) {
 			$this->session_id = null;
 		}
 
-		$this->session_data = [];
+		return $this;
 	}
 
 	public function retrieve(): self {
