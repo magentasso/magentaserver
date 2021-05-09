@@ -3,42 +3,68 @@
 {% block header %}{% include "debug/header.html" %}{% endblock %}
 
 {% block contentcontainer %}
-<main class="popup-container">
-	<section id="debugview-session" class="popup-section">
-		<h1>{{ L('debug_view_session_title') }}</h1>
+<section id="debugview-actions" class="popup-container">
+	<h1>{{ L('debug_view_actions_title') }}</h1>
 
-		<ul>
-			<li>
-				<strong>{{ L('debug_view_session_id') }}</strong>:
-				<code>{% if session.session_id %}{{ session.session_id }}{% else %}not set{% endif %}</code>
-			</li>
+	<form class="inline-form" method="POST">
+		<input type="hidden" name="action" value="destroySession">
+		<button type="submit" class="button">{{ L('debug_view_session_destroy') }}</button>
+	</form>
 
-			<li>
-				<strong>{{ L('debug_view_session_data') }}</strong>:
-				<ul>
-					{% for key, value in session.session_data %}
+	<form class="inline-form" method="POST">
+		<input type="hidden" name="action" value="populateSession">
+		<button type="submit" class="button">{{ L('debug_view_session_populate') }}</button>
+	</form>
+</section>
+
+<section id="debugview-session" class="popup-container">
+	<h1>{{ L('debug_view_session_title') }}</h1>
+
+	<ul>
+		<li>
+			<strong>{{ L('debug_view_session_id') }}</strong>:
+			<code>{% if session.session_id %}{{ session.session_id }}{% else %}not set{% endif %}</code>
+		</li>
+
+		<li>
+			<strong>{{ L('debug_view_session_data') }}</strong>:
+			<ul>
+				{% for key, value in session.session_data %}
+					<li>
+						<code>{{ key }}</code>
+						<ul><li><code>{{ value }}</code></li></ul>
+					</li>
+				{% endfor %}
+			</ul>
+		</li>
+		
+		<li>
+			<strong>{{ L('debug_view_session_user_data') }}</strong>:
+			<ul>
+				{% if session.isLoggedIn() %}
+					{% for key in ['email', 'name_first', 'name_last', 'permissions'] %}
 						<li>
 							<code>{{ key }}</code>
-							<ul><li><code>{{ value }}</code></li></ul>
+							<ul><li><code>{{ session.currentUser()[key] }}</code></li></ul>
 						</li>
 					{% endfor %}
-				</ul>
-			</li>
-		</ul>
-	</section>
+				{% endif %}
+			</ul>
+		</li>
+		
+	</ul>
+</section>
 
-	<section id="debugview-actions" class="popup-section">
-		<h1>{{ L('debug_view_actions_title') }}</h1>
+<section id="debugview-createuser" class="popup-container">
+	<h1>{{ L('debug_view_createuser_title') }}</h1>
+	<p>{{ L('debug_view_createuser_content_one')|raw }}</p>
 
-		<form class="inline-form" method="POST">
-			<input type="hidden" name="action" value="destroySession">
-			<button type="submit" class="button">{{ L('debug_view_session_destroy') }}</button>
-		</form>
-
-		<form class="inline-form" method="POST">
-			<input type="hidden" name="action" value="populateSession">
-			<button type="submit" class="button">{{ L('debug_view_session_populate') }}</button>
-		</form>
-	</section>
-</main>
+	<form class="form-main" method="POST">
+		<input type="hidden" name="_csrf" value="{{ csrf.generate('csrf') }}">
+		<input type="hidden" name="action" value="createUser">
+		<input type="email" name="email" placeholder="{{ L('field_email') }}">
+		<input type="text" name="perms" placeholder="{{ L('field_user_permissions') }}" value="S">
+		<button type="submit" class="button">{{ L('debug_view_createuser_submit') }}</button>
+	</form>
+</section>
 {% endblock %}

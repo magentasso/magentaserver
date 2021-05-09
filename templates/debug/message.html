@@ -4,7 +4,7 @@
 
 {% block contentcontainer %}
 <main class="popup-container">
-	<aside class="message">{{ message }}</aside>
+	<aside class="message">{{ message|raw }}</aside>
 
 	<div class="form-main">
 		<a class="button" href="{{ url_for('debug') }}">
