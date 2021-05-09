@@ -13,20 +13,19 @@ class DebuggingController extends Controller {
 	public function requestPOST(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
 		$action = trim($request->getParsedBody()['action']);
 		if ($action === 'destroySession') {
-			$session = $this->session($request);
-			$old_session_id = $session->session_id;
-			$session->destroy();
+			$old_session_id = $this->session->session_id;
+			$this->session->destroy();
 
 			return $this->renderView($request, $response, "debug/message.html", [
 				'message' => \L('debug_view_session_destroy_success', [$old_session_id ?? 'null']),
 			]);
 
 		} elseif ($action === 'populateSession') {
-			$this->session($request)->ensureCreate()->update();
-			$this->csrf($request)->generate('csrf');
-			
+			$this->session->ensureCreate()->update();
+			$this->csrf->generate('csrf');
+
 			return $this->renderView($request, $response, "debug/message.html", [
-				'message' => \L('debug_view_session_populate_success'),
+				'message' => \L('debug_view_session_populate_success', [$this->session->session_id ?? 'null']),
 			]);
 		}
 
