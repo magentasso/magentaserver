@@ -41,7 +41,7 @@ body {
 	color: var(--body-foreground);
 }
 
-.main a {
+.main a:not(.button) {
 	color: var(--accent);
 }
 
