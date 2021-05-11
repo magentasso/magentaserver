@@ -901,12 +901,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/magentasso/magentasso-php.git",
-                "reference": "b871f13208f7dee425991b58fed052ee4b56d4a4"
+                "reference": "aac4fe2519e69ccbc42edd4913efc03082321e0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/magentasso/magentasso-php/zipball/b871f13208f7dee425991b58fed052ee4b56d4a4",
-                "reference": "b871f13208f7dee425991b58fed052ee4b56d4a4",
+                "url": "https://api.github.com/repos/magentasso/magentasso-php/zipball/aac4fe2519e69ccbc42edd4913efc03082321e0c",
+                "reference": "aac4fe2519e69ccbc42edd4913efc03082321e0c",
                 "shasum": ""
             },
             "require": {
@@ -937,7 +937,7 @@
                 "source": "https://github.com/magentasso/magentasso-php/tree/main",
                 "issues": "https://github.com/magentasso/magentasso-php/issues"
             },
-            "time": "2021-05-08T12:19:43+00:00"
+            "time": "2021-05-09T15:13:45+00:00"
         },
         {
             "name": "mustangostang/spyc",
