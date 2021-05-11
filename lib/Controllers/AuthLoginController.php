@@ -16,6 +16,8 @@ class AuthLoginController extends Controller {
 		$message = null;
 		if (array_key_exists('from', $queryParams) && $queryParams['from'] == 'logout') {
 			$message = \L('auth_logout_success');
+		} elseif (array_key_exists('next', $queryParams)) {
+			$message = \L('auth_login_creds_to_continue');
 		}
 
 		return $this->renderView($request, $response, "auth/login.html", [
@@ -28,6 +30,7 @@ class AuthLoginController extends Controller {
 			return $response->withHeader('Location', $this->urlFor('index'))->withStatus(302);
 		}
 
+		$queryParams = $request->getQueryParams();
 		$requestBody = $request->getParsedBody();
 		$this->csrf->check('csrf', $requestBody['_csrf'], null, true);
 		
@@ -58,6 +61,13 @@ class AuthLoginController extends Controller {
 		// If we get here, login is successful
 		$this->session->session_data['userid'] = $user->id;
 		$this->session->ensureCreate()->update();
-		return $response->withHeader('Location', $this->urlFor('index'))->withStatus(302);
+		
+		// Redirect!
+		$nextUri = $this->urlFor('index');
+		if (array_key_exists('next', $queryParams)) {
+			$nextUri = $queryParams['next'];
+		}
+
+		return $response->withHeader('Location', $nextUri)->withStatus(302);
 	}
 }
