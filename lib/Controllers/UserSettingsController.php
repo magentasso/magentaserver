@@ -24,6 +24,7 @@ class UserSettingsController extends Controller {
 			return $response->withHeader('Location', $this->urlFor('auth-login'))->withStatus(302);
 		}
 
+		$message = null;
 		$user = $this->session->currentUser();
 		$rBody = $request->getParsedBody();
 
@@ -49,11 +50,47 @@ class UserSettingsController extends Controller {
 			$user->name_last = $name_last;
 			$user->email = $email;
 			$user->save();
+			
+			$message = \L('usersettings_updatedetails_success');
+		} elseif ($requestAction === 'changePassword') {
+			$currentPassword = empty($currentPassword = trim($rBody['current'] ?? '')) ? null : $currentPassword;
+			$newPassword = empty($newPassword = trim($rBody['new'] ?? '')) ? null : $newPassword;
+			$newPasswordConfirm = empty($newPasswordConfirm = trim($rBody['new_confirm'] ?? '')) ? null : $newPasswordConfirm;
+
+			if ($currentPassword === null || $newPassword === null || $newPasswordConfirm === null) {
+				return $this->renderView($request, $response, "usersettings/index.html", [
+					'csrf_token' => $this->csrf->generate('csrf'),
+					'user' => $user,
+					'message' => \L('string_required_not_provided'),
+				]);
+			}
+
+			if (password_verify($currentPassword, $user->password_hash) === false) {
+				return $this->renderView($request, $response, "usersettings/index.html", [
+					'csrf_token' => $this->csrf->generate('csrf'),
+					'user' => $user,
+					'message' => \L('usersettings_changepassword_error_current_incorrect'),
+				]);
+			}
+
+			if ($newPassword !== $newPasswordConfirm) {
+				return $this->renderView($request, $response, "usersettings/index.html", [
+					'csrf_token' => $this->csrf->generate('csrf'),
+					'user' => $user,
+					'message' => \L('usersettings_changepassword_error_confirm_mismatch'),
+				]);
+			}
+
+			$user->password_hash = password_hash($newPassword, PASSWORD_DEFAULT);
+			$user->save();
+			
+			$message = \L('usersettings_changepassword_success');
 		}
-		
+
 		return $this->renderView($request, $response, "usersettings/index.html", [
 			'csrf_token' => $this->csrf->generate('csrf'),
 			'user' => $user,
+			'message' => $message,
 		]);
 	}
 }

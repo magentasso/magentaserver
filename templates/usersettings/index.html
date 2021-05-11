@@ -35,5 +35,18 @@
 				<button type="submit" class="button">{{ L('usersettings_updatedetails_submit') }}</button>
 			</form>
 		</section>
+
+		<section id="usersettings-changepassword" class="popup-container">
+			<h1>{{ L('usersettings_changepassword_title') }}</h1>
+		
+			<form class="form-main" method="POST">
+				<input type="hidden" name="_csrf" value="{{ csrf_token }}">
+				<input type="hidden" name="action" value="changePassword">
+				<input type="password" name="current" placeholder="{{ L('field_password_current') }}">
+				<input type="password" name="new" placeholder="{{ L('field_password_new') }}">
+				<input type="password" name="new_confirm" placeholder="{{ L('field_password_confirm') }}">
+				<button type="submit" class="button">{{ L('usersettings_changepassword_submit') }}</button>
+			</form>
+		</section>
 	</main>
 {% endblock %}
