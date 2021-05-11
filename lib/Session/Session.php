@@ -6,8 +6,11 @@ use MagentaServer\Helpers\RedisInstance;
 use MagentaServer\Models\User;
 
 class Session {
-	public ?string $session_id;
-	public array $session_data;
+	/** @var ?string $session_id */
+	public $session_id;
+	
+	/** @var array<string, mixed> $session_data */
+	public $session_data;
 
 	public function __construct(?string $session_id) {
 		$this->setSessionID($session_id);

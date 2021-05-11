@@ -9,9 +9,14 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 class Controller {
+	/** @var ContainerInterface $container */
 	private $container;
-	public Session $session;
-	public EasyCSRF $csrf;
+
+	/** @var Session $session */
+	public $session;
+
+	/** @var EasyCSRF $csrf */
+	public $csrf;
 
 	public function __construct(ContainerInterface $container) {
 		$this->container = $container;

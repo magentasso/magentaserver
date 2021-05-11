@@ -5,7 +5,9 @@ use MagentaServer\Session\Session;
 use EasyCSRF\Interfaces\SessionProvider;
 
 class EasyCSRFSessionProvider implements SessionProvider {
-	protected Session $session;
+	/** @var Session $session */
+
+	protected $session;
 	public function __construct(Session &$session) {
 		$this->session = $session;
 	}
