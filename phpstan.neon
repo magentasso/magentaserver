@@ -1,0 +1,8 @@
+parameters:
+	level: 0
+	paths:
+		- lib
+		- public
+	ignoreErrors:
+		# Let the i18n stuff fly
+		- '#Function L not found#'

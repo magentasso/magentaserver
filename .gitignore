@@ -1,6 +1,7 @@
 /vendor
 /cache
 /custom
+.phpunit.result.cache
 .env
 .env.*
 !.env.dist
