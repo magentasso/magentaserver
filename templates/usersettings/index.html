@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block title %}{{ L('usersettings_title') }}{% endblock %}
+{% block contentcontainer %}
+	{% if message %}
+		<div class="main-container margin-y">
+			<aside class="message">{{ message }}</aside>
+		</div>
+	{% endif %}
+
+	<main id="usersettings" class="main main-container">
+		<h1>{{ L('usersettings_title') }}</h1>
+
+		<section id="usersettings-details" class="popup-container">
+			<h1>{{ L('usersettings_details_title') }}</h1>
+		
+			<ul>
+				{% for key in ['email', 'name_first', 'name_last'] %}
+					<li>
+						<strong>{{ L("field_#{key}") }}</strong>:
+						<code>{{ user[key] }}</code>
+					</li>
+				{% endfor %}
+			</ul>
+		</section>
+
+		<section id="usersettings-updatedetails" class="popup-container">
+			<h1>{{ L('usersettings_updatedetails_title') }}</h1>
+		
+			<form class="form-main" method="POST">
+				<input type="hidden" name="_csrf" value="{{ csrf_token }}">
+				<input type="hidden" name="action" value="updateDetails">
+				<input type="email" name="email" placeholder="{{ L('field_email') }}" value="{{ user.email }}">
+				<input type="text" name="name_first" placeholder="{{ L('field_name_first') }}" value="{{ user.name_first }}">
+				<input type="text" name="name_last" placeholder="{{ L('field_name_last') }}" value="{{ user.name_last }}">
+				<button type="submit" class="button">{{ L('usersettings_updatedetails_submit') }}</button>
+			</form>
+		</section>
+	</main>
+{% endblock %}

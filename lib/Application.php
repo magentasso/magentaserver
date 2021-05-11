@@ -45,6 +45,7 @@ class Application {
 		$app->any("/auth/login", Controllers\AuthLoginController::class)->setName('auth-login');
 		$app->any("/auth/logout", Controllers\AuthLogoutController::class)->setName('auth-logout');
 		$app->get("/sso/magenta", Controllers\SSOMagentaController::class)->setName('sso-magenta');
+		$app->any("/user", Controllers\UserSettingsController::class)->setName('usersettings');
 
 		if ($_ENV['ENVIRONMENT'] === 'development') {
 			$app->any("/debug", Controllers\DebuggingController::class)->setName('debug');
