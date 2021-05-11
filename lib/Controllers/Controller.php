@@ -56,6 +56,7 @@ class Controller {
 			'site_title' => $_ENV['SITE_TITLE'] ?? 'Magenta',
 			'site_environment' => $_ENV['ENVIRONMENT'],
 			'session' => $this->session->retrieve(),
+			'user' => $this->session->isLoggedIn() ? $this->session->currentUser() : null,
 			'csrf' => $this->csrf,
 		], $args ?? []);
 

@@ -11,11 +11,9 @@ class UserSettingsController extends Controller {
 		if (!$this->session->isLoggedIn()) {
 			return $response->withHeader('Location', $this->urlFor('auth-login'))->withStatus(302);
 		}
-		
-		$user = $this->session->currentUser();
+
 		return $this->renderView($request, $response, "usersettings/index.html", [
 			'csrf_token' => $this->csrf->generate('csrf'),
-			'user' => $user,
 		]);
 	}
 
@@ -41,7 +39,6 @@ class UserSettingsController extends Controller {
 			if ($email === null || $name_first === null || $name_last === null) {
 				return $this->renderView($request, $response, "usersettings/index.html", [
 					'csrf_token' => $this->csrf->generate('csrf'),
-					'user' => $user,
 					'message' => \L('string_required_not_provided'),
 				]);
 			}
@@ -60,7 +57,6 @@ class UserSettingsController extends Controller {
 			if ($currentPassword === null || $newPassword === null || $newPasswordConfirm === null) {
 				return $this->renderView($request, $response, "usersettings/index.html", [
 					'csrf_token' => $this->csrf->generate('csrf'),
-					'user' => $user,
 					'message' => \L('string_required_not_provided'),
 				]);
 			}
@@ -68,7 +64,6 @@ class UserSettingsController extends Controller {
 			if (password_verify($currentPassword, $user->password_hash) === false) {
 				return $this->renderView($request, $response, "usersettings/index.html", [
 					'csrf_token' => $this->csrf->generate('csrf'),
-					'user' => $user,
 					'message' => \L('usersettings_changepassword_error_current_incorrect'),
 				]);
 			}
@@ -76,7 +71,6 @@ class UserSettingsController extends Controller {
 			if ($newPassword !== $newPasswordConfirm) {
 				return $this->renderView($request, $response, "usersettings/index.html", [
 					'csrf_token' => $this->csrf->generate('csrf'),
-					'user' => $user,
 					'message' => \L('usersettings_changepassword_error_confirm_mismatch'),
 				]);
 			}
@@ -89,7 +83,6 @@ class UserSettingsController extends Controller {
 
 		return $this->renderView($request, $response, "usersettings/index.html", [
 			'csrf_token' => $this->csrf->generate('csrf'),
-			'user' => $user,
 			'message' => $message,
 		]);
 	}

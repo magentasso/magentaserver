@@ -5,8 +5,8 @@
 		</ul>
 
 		<ul class="nav-section">
-			{% if session.isLoggedIn() %}
-				<li><a class="{% if is_current_url('usersettings') %}nav-active{% endif %}" href="{{ url_for('usersettings') }}">{{ session.currentUser().name_combined() }}</a></li>
+			{% if user %}
+				<li><a class="{% if is_current_url('usersettings') %}nav-active{% endif %}" href="{{ url_for('usersettings') }}">{{ user.name_combined() }}</a></li>
 				<li><a class="{% if is_current_url('auth-logout') %}nav-active{% endif %}" href="{{ url_for('auth-logout') }}">{{ L('auth_logout_title') }}</a></li>
 			{% else %}
 				<li><a class="{% if is_current_url('auth-login') %}nav-active{% endif %}" href="{{ url_for('auth-login') }}">{{ L('auth_login_title') }}</a></li>
