@@ -1,0 +1,22 @@
+{% extends "admin/layout.html" %}
+{% block siteadmincontent %}
+	<section id="siteadmin-clients" class="popup-container">
+		<h1>{{ L('siteadmin_clients_title') }}</h1>
+		
+		<div class="form-main">
+			<a class="button" href="{{ url_for('siteadmin-clientcreate') }}">{{ L('siteadmin_clientscreate_title') }}</a>
+		</div>
+
+		<ul>
+			{% for client in clients %}
+				<li>
+					<strong>{{ client.friendly_name }}</strong>
+					<ul>
+						<li>{{ L('field_client_id') }}: <code>{{ client.client_id }}</code></li>
+						<li>{{ L('field_updated') }}: <code>{{ client.updated }}</code></li>
+					</ul>
+				</li>
+			{% endfor %}
+		</ul>
+	</section>
+{% endblock %}

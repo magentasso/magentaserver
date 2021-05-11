@@ -2,6 +2,11 @@
 	<nav class="main-nav main-container">
 		<ul class="nav-section">
 			<li><a class="nav-brand {% if is_current_url('index') %}nav-active{% endif %}" href="{{ url_for('index') }}">{{ site_title }}</a></li>
+			{% if user %}
+				{% if user.canPerform('siteadmin') %}
+					<li><a class="{% if is_current_url('siteadmin') %}nav-active{% endif %}" href="{{ url_for('siteadmin') }}">{{ L('siteadmin_title') }}</a></li>
+				{% endif %}
+			{% endif %}
 		</ul>
 
 		<ul class="nav-section">

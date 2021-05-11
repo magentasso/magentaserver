@@ -1,0 +1,12 @@
+{% extends "admin/layout.html" %}
+{% block siteadmincontent %}
+	<section id="siteadmin-clients-create" class="popup-container">
+		<h1>{{ L('siteadmin_clientscreate_title') }}</h1>
+
+		<form class="form-main" method="POST">
+			<input type="hidden" name="_csrf" value="{{ csrf.generate('csrf') }}">
+			<input type="text" name="friendlyname" placeholder="{{ L('field_client_friendlyname') }}" required>
+			<button type="submit" class="button">{{ L('siteadmin_clientscreate_submit') }}</button>
+		</form>
+	</section>
+{% endblock %}

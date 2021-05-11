@@ -46,6 +46,9 @@ class Application {
 		$app->any("/auth/logout", Controllers\AuthLogoutController::class)->setName('auth-logout');
 		$app->get("/sso/magenta", Controllers\SSOMagentaController::class)->setName('sso-magenta');
 		$app->any("/user", Controllers\UserSettingsController::class)->setName('usersettings');
+		$app->any("/admin", Controllers\SiteAdminController::class)->setName('siteadmin');
+		$app->any("/admin/clients", Controllers\SiteAdminClientController::class)->setName('siteadmin-client');
+		$app->any("/admin/clients/create", Controllers\SiteAdminClientCreateController::class)->setName('siteadmin-clientcreate');
 
 		if ($_ENV['ENVIRONMENT'] === 'development') {
 			$app->any("/debug", Controllers\DebuggingController::class)->setName('debug');
