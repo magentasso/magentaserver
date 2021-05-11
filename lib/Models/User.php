@@ -13,4 +13,8 @@ class User extends Model {
 	public function name_combined(): string {
 		return "{$this->name_first} {$this->name_last}";
 	}
+
+	public function canPerform(string $requestedAction): bool {
+		return \MagentaServer\Helpers\PermissionParser::canPerform($this->permissions, $requestedAction);
+	}
 }
