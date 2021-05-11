@@ -13,7 +13,7 @@ class Application {
 
 		// Verify environment
 		$dotenv->required('ENVIRONMENT')->allowedValues(['development', 'test', 'production']);
-		$dotenv->required('DATABASE_URL')->notEmpty();
+		$dotenv->required('DATABASE_DSN')->notEmpty();
 		$dotenv->required('REDIS_URL')->notEmpty();
 		$dotenv->required('SITE_SESSIONCOOKIE')->notEmpty();
 		$dotenv->ifPresent('SITE_TITLE')->notEmpty();
