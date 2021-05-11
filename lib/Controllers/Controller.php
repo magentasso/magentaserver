@@ -59,7 +59,7 @@ class Controller {
 	public function renderView(ServerRequestInterface $request, ResponseInterface $response, string $template, ?array $args = []): ResponseInterface {
 		$args = array_merge([
 			'site_title' => $_ENV['SITE_TITLE'] ?? 'Magenta',
-			'site_environment' => $_ENV['ENVIRONMENT'],
+			'site_environment' => $_ENV['APP_ENV'],
 			'session' => $this->session->retrieve(),
 			'user' => $this->session->isLoggedIn() ? $this->session->currentUser() : null,
 			'csrf' => $this->csrf,

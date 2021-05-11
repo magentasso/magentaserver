@@ -12,7 +12,7 @@ class Container extends \DI\Container {
 
 			$twig = \Slim\Views\Twig::create($templateDirs, [
 				'cache' => dirname(__DIR__) . '/cache/templates',
-				'debug' => ($_ENV['ENVIRONMENT'] == 'development'),
+				'debug' => ($_ENV['APP_ENV'] == 'development'),
 			]);
 
 			$twig->addExtension(new \MagentaServer\Helpers\TwigExtension());

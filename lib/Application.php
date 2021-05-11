@@ -12,7 +12,7 @@ class Application {
 		$dotenv->load();
 
 		// Verify environment
-		$dotenv->required('ENVIRONMENT')->allowedValues(['development', 'test', 'production']);
+		$dotenv->required('APP_ENV')->allowedValues(['development', 'test', 'production']);
 		$dotenv->required('DATABASE_DSN')->notEmpty();
 		$dotenv->required('REDIS_URL')->notEmpty();
 		$dotenv->required('SITE_SESSIONCOOKIE')->notEmpty();
@@ -50,7 +50,7 @@ class Application {
 		$app->any("/admin/clients", Controllers\SiteAdminClientController::class)->setName('siteadmin-client');
 		$app->any("/admin/clients/create", Controllers\SiteAdminClientCreateController::class)->setName('siteadmin-clientcreate');
 
-		if ($_ENV['ENVIRONMENT'] === 'development') {
+		if ($_ENV['APP_ENV'] === 'development') {
 			$app->any("/debug", Controllers\DebuggingController::class)->setName('debug');
 		}
 
